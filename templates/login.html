@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form class="login" action="{{ url_for('login') }}" method="post">
+            <p class="title">请登录</p>
+            <input type="text" placeholder="用户名" autofocus name="username" />
+            <i class="fa fa-user"></i>
+            <input type="password" placeholder="密码" name="password" />
+            <i class="fa fa-key"></i>
+            <input type="checkbox" name="remember_me" id="remember_me" />
+            <label for="remember_me">记住我</label>
+            <button>
+                <i class="spinner"></i>
+                <input type="submit" value="登录" id="login_btn" />
+            </button>
+            {{ form.hidden_tag() }}
+        </form>
+    </div>
+    <script src='{{ url_for('static', filename='js/jquery.min.js') }}'></script>
+</body>
+
+</html>
