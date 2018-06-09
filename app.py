@@ -9,7 +9,7 @@ from flask_wtf import CsrfProtect
 from models import User
 
 app = Flask(__name__)
-app.secret_key = os.urandom(16)
+app.secret_key = os.urandom(24)
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -26,25 +26,26 @@ csrf = CsrfProtect()
 csrf.init_app(app)
 
 
-@app.route('/login')
+@app.route('/')
+@app.route('/main')
+@login_required
+def main():
+    return render_template('main.html', username=current_user.username)
+
+
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         username = request.form.get('username', None)
         password = request.form.get('password', None)
         remember_me = request.form.get('remember_me', False)
-        user = User(username)
+        user = User(username, password)
         if user.verify_password(password):
             login_user(user, remember=remember_me)
-            return redirect(request.args.get('next') or url_for('main'))
+            return redirect(request.args.get('next') or
+                            url_for('main', current_user=current_user))
     return render_template('login.html', form=form)
-
-
-@app.route('/')
-@app.route('/main')
-@login_required
-def main():
-    return render_template('main.html', username=current_user.username)
 
 
 @app.route('/logout')
