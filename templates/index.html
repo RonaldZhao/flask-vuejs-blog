@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Index{% endblock %}
 {% block body %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</nav>
 <h1>Index Page</h1>
 {% endblock %}
