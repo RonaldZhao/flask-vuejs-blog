@@ -15,9 +15,18 @@
 
 {% block body %}
 <div class="wrapper">
+    {% if form.password_check %}
+    <form class="login" action="{{ url_for('register') }}" method="post">
+    {% else %}
     <form class="login" action="{{ url_for('login') }}" method="post">
+    {% endif %}
         {{ form.csrf_token }}
         <p class="title">{% if form.password_check %}终于等到你{% else %}请登录{% endif %}</p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <p style="color: red;">{{ messages[0] }}</p>
+        {% endif %}
+        {% endwith %}
         {{ form.username(placeholder='用户名') }}
         <i class="fa fa-user"></i>
         {{ form.password(placeholder='密码')}}
