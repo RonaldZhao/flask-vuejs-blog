@@ -1,10 +1,10 @@
 from flask_script import Manager, Server
 
-from app import app, db
+from myapp import app, db
 from models import User, Post
 
 manager = Manager(app)
-manager.add_command('server', Server())
+manager.add_command('dev', Server())
 
 
 @manager.shell
