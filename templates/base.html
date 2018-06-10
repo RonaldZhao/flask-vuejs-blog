@@ -3,15 +3,10 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %} -- FlaskLoginModule</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.min.css') }}">
+        {% block custom_css %}{% endblock %}
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            </ul>
-        </nav>
         {% block body %}{% endblock %}
     </body>
 </html>
