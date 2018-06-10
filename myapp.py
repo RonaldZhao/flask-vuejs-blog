@@ -7,7 +7,7 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 # from flask_wtf import CsrfProtect
 
-from forms import LoginForm
+from forms import LoginForm, RegisterForm
 
 
 app = Flask(__name__)
@@ -40,12 +40,18 @@ def login():
     #     username = request.form.get('username', None)
     #     password_hash = request.form.get('password', None)
     #     pass
-    return render_template('login.html', form=form)
+    return render_template('login_or_register.html', form=form)
 
 
 @app.route('/logout')
 def logout():
     pass
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    return render_template('login_or_register.html', form=form)
 # csrf = CsrfProtect()
 # csrf.init_app(app)
 #
