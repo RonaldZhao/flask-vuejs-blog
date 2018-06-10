@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Index{% endblock %}
 {% block body %}
-<nav>
-    <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('login') }}">Login</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-    </ul>
-</nav>
-<h1>Index Page</h1>
+    {% if current_user.username %}
+    <h1>欢迎, {{ current_user.username }}!</h1>
+    <p><a href="{{ url_for('logout') }}">退出</a></p>
+    {% else %}
+    <h1>亲，您还未登录，请<a href="{{ url_for('login') }}">登录</a></h1>
+    {% endif %}
 {% endblock %}
