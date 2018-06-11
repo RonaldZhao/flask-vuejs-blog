@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+    {% if form.password_check %}
+    注册
+    {% else %}
+    登录
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    {% if form.password_check %}
+    <form class="login" action="{{ url_for('register') }}" method="post">
+    {% else %}
+    <form class="login" action="{{ url_for('login') }}" method="post">
+    {% endif %}
+        {{ form.hidden_tag() }}
+        <p class="title">{% if form.password_check %}终于等到你{% else %}请登录{% endif %}</p>
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+        {% endwith %}
+        {{ form.username(placeholder='用户名') }}
+        <i class="fa fa-user"></i>
+        {{ form.password(placeholder='密码')}}
+        <i class="fa fa-key"></i>
+        {% if form.password_check %}
+        {{ form.password_check(placeholder='确认密码')}}
+        <i class="fa fa-key"></i>
+        {% else %}
+        {{ wtf.form_field(form.remember_me) }}
+        {% endif %}
+        <input type="submit" value="{% if form.password_check %}注册{% else %}登录{% endif %}" id="submit_btn" />
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src='{{ url_for('static', filename='js/jquery.min.js') }}'></script>
+{{ super() }}
+{% endblock %}
