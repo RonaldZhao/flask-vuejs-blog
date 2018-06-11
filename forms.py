@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, SubmitField
+from wtforms import StringField, BooleanField, PasswordField, SubmitField,\
+    TextAreaField
 from wtforms.validators import DataRequired
 
 
@@ -19,5 +20,5 @@ class RegisterForm(FlaskForm):
 
 class PostForm(FlaskForm):
     title = StringField(label='标题', validators=[DataRequired()])
-    content = StringField(label='内容', validators=[DataRequired()])
+    content = TextAreaField(label='内容', validators=[DataRequired()])
     submit = SubmitField(label='发布')
