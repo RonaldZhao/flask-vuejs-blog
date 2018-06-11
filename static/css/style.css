@@ -1,33 +1,21 @@
-body {
-    font-family: "Open Sans", sans-serif;
-    height: 100vh;
-    background: url("https://i.imgur.com/HgflTDf.jpg") 50% fixed;
-    background-size: cover;
-}
-
 * {
     box-sizing: border-box;
 }
 
 .wrapper {
+    margin-top: 10%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
-    background: rgba(4, 40, 68, 0.85);
 }
 
 .login {
     border-radius: 2px 2px 5px 5px;
     padding: 10px 20px 20px 20px;
     width: 90%;
-    max-width: 320px;
+    max-width: 360px;
     background: #ffffff;
     position: relative;
-    /* padding-bottom: 80px; */
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
