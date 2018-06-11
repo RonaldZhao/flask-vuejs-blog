@@ -14,6 +14,8 @@
             </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
+                <li><a href="#">欢迎您，{{ current_user.username }}!</a></li>
+                <li><a href="{{ url_for('post') }}">发布新文章</a></li>
                 <li><a href="{{ url_for('logout') }}">注销</a></li>
                 {% else %}
                 <li><a href="{{ url_for('register') }}">注册</a></li>
