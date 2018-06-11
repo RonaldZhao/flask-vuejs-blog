@@ -15,3 +15,9 @@ class RegisterForm(FlaskForm):
     password = PasswordField(label='密码', validators=[DataRequired()])
     password_check = PasswordField(label='确认密码', validators=[DataRequired()])
     submit = SubmitField(label='注册')
+
+
+class PostForm(FlaskForm):
+    title = StringField(label='标题', validators=[DataRequired()])
+    content = StringField(label='内容', validators=[DataRequired()])
+    submit = SubmitField(label='发布')
