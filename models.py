@@ -1,3 +1,5 @@
+import datetime
+
 from werkzeug.security import generate_password_hash
 from flask_login import UserMixin
 
@@ -22,6 +24,7 @@ class Post(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text(), nullable=False)
+    post_time = db.Column(db.DateTime(), default=datetime.datetime.now())
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
     def __init__(self, title, content):
