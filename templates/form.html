@@ -30,7 +30,7 @@
         <p style="color: red;">{{ message }}</p>
         {% endfor %}
         {% endwith %}
-        {{ form.username(placeholder='用户名') }}
+        {{ form.username(placeholder='用户名', autofocus='True') }}
         <i class="fa fa-user"></i>
         {{ form.password(placeholder='密码')}}
         <i class="fa fa-key"></i>
