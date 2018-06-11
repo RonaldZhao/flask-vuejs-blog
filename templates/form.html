@@ -40,7 +40,7 @@
         {% else %}
         {{ wtf.form_field(form.remember_me) }}
         {% endif %}
-        <input type="submit" value="{% if form.password_check %}注册{% else %}登录{% endif %}" id="submit_btn" />
+        {{ wtf.form_field(form.submit, id='submit_btn') }}
     </form>
 </div>
 {% endblock %}
