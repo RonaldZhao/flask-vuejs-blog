@@ -69,8 +69,6 @@
 
 .login input#submit_btn {
     margin-top: 20px;
-    background: #2196F3;
     color: white;
     border: none;
-    cursor: pointer;
 }
