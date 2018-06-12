@@ -5,6 +5,8 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash
 from flask_bootstrap import Bootstrap
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 from forms import LoginForm, RegisterForm, PostForm
 
@@ -22,6 +24,10 @@ login_manager.session_protection = 'strong'
 login_manager.login_view = 'login'
 login_manager.init_app(app=app)
 
+admin = Admin(app, name="z_blog", template_mode='bootstrap3')
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Post, db.session))
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -32,8 +38,8 @@ def load_user(user_id):
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = Post.query.order_by(-Post.post_time).all()  # 查询所有已发布文章并根据发布时间逆序排列
-    return render_template('index.html', posts=posts, posts_len=len(posts))
+    all_posts = Post.query.order_by(-Post.post_time).all()  # 查询所有已发布文章并根据发布时间逆序排列
+    return render_template('index.html', posts=all_posts, posts_len=len(all_posts))
 
 
 @app.route('/login', methods=['GET', 'POST'])
