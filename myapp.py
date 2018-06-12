@@ -34,8 +34,8 @@ def load_user(user_id):
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = Post.query.order_by(-Post.post_time)  # 查询所有已发布文章并根据发布时间逆序排列
-    return render_template('index.html', posts=posts)
+    posts = Post.query.order_by(-Post.post_time).all()  # 查询所有已发布文章并根据发布时间逆序排列
+    return render_template('index.html', posts=posts, posts_len=len(posts))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -103,8 +103,8 @@ def post():
     return render_template('post.html', form=form)
 
 
-@app.route('/pages/<int:post_id>')
-def pages(post_id):
+@app.route('/posts/<int:post_id>')
+def posts(post_id):
     post = Post.query.filter_by(id=post_id).first()
     if not post:
         return redirect(url_for('index'))
