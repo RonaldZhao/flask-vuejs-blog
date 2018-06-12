@@ -3,26 +3,59 @@
 {% block title %}Base{% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
+<header>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for('index') }}">Flask-Login-Module</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{{ url_for('index') }}">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            首页
+                        </a>
+                    </li>
+                </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_authenticated %}
+                    <li>
+                        <p class="navbar-text">
+                            <span class="label label-primary">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                {{ current_user.username }}
+                            </span>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('post') }}">发布新文章</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout') }}">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            注销
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ url_for('register') }}">注册</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('login') }}">登录</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+{% endblock %}
+
+{% block content %}
+<footer class="footer" style="line-height: 40px;">
     <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ url_for('index') }}">Flask-Login-Module</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('index') }}">首页</a></li>
-            </ul>
-              <ul class="nav navbar-nav navbar-right">
-                {% if current_user.is_authenticated %}
-                <li><a href="#">欢迎您，{{ current_user.username }}!</a></li>
-                <li><a href="{{ url_for('post') }}">发布新文章</a></li>
-                <li><a href="{{ url_for('logout') }}">注销</a></li>
-                {% else %}
-                <li><a href="{{ url_for('register') }}">注册</a></li>
-                <li><a href="{{ url_for('login') }}">登录</a></li>
-                {% endif %}
-            </ul>
-        </div>
+        <span class="text-muted center-block" style="text-align: center;">&copy;RonaldZhao All Rights Reserved. 2018-Present</span>
     </div>
-</div>
+</footer>
 {% endblock %}
