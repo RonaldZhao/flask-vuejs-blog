@@ -2,16 +2,16 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
-{% block styles %}
-{{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
-{% endblock %}
-
 {% block content %}
-<div class="pages">
-    <div class="page">
-        <h1>{{ post.title }}<small>作者:{{ post.author.username }} 发布时间:{{ post.post_time }}</small></h1>
-        <p>{{ post.content|markdown }}</p>
+<div class="container">
+    <div class="page-header">
+        <h1>
+            {{ post.title }}
+            <small>[作者:{{ post.author.username }},发布时间:{{ post.post_time }}]</small>
+        </h1>
+    </div>
+    <div class="page-content">
+        {{ post.content|markdown }}
     </div>
 </div>
 {% endblock %}
