@@ -8,12 +8,12 @@ from myapp import db
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
+    user_name = db.Column(db.String(50), unique=True, nullable=False)
     password_hash = db.Column(db.String(100), nullable=False)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
-    def __init__(self, username, password):
-        self.username = username
+    def __init__(self, user_name, password):
+        self.user_name = user_name
         self.password_hash = generate_password_hash(password)
 
     def __repr__(self):
