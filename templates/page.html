@@ -11,7 +11,7 @@
         </h1>
     </div>
     <div class="page-content">
-        {{ post.content|markdown }}
+        {{ post.content|safe }}
     </div>
 </div>
 {% endblock %}

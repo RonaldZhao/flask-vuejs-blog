@@ -17,7 +17,7 @@
             </div>
             <div class="page-content">
                 <div>
-                    {{ post.content[:120]|markdown }}
+                    {{ post.content[:120] }}
                 </div>
                 <p style="text-align: right;">
                     <a href="{{ url_for('posts', post_id=post.id) }}" class="btn btn-info">&gt;&gt;阅读全文</a>

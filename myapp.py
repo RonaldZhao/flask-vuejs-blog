@@ -5,7 +5,6 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash
 from flask_bootstrap import Bootstrap
-from flaskext.markdown import Markdown
 
 from forms import LoginForm, RegisterForm, PostForm
 
@@ -14,7 +13,6 @@ app = Flask(__name__)
 app.secret_key = os.urandom(16)
 app.config.from_pyfile('config.py')
 bootstrap = Bootstrap(app)
-Markdown(app)
 db = SQLAlchemy(app)
 
 from models import User, Post
