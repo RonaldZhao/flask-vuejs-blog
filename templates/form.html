@@ -40,7 +40,7 @@
         {% else %}
         {{ wtf.form_field(form.remember_me) }}
         {% endif %}
-        {{ wtf.form_field(form.submit, id='submit_btn') }}
+        {{ wtf.form_field(form.submit, id='submit_btn', class='btn btn-success') }}
     </form>
 </div>
 {% endblock %}
