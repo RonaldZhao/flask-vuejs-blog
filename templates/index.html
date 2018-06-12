@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %}Index{% endblock %}
-
-{% block styles %}
-{{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css')}}">
-{% endblock %}
+{% block title %}首页{% endblock %}
 
 {% block content %}
-    <div class="pages">
+    <main class="container" role="main">
         {% for post in posts %}
         <div class="page">
-            <h2><a href="{{ url_for('pages', post_id=post.id) }}">{{ post.title }}</a><small> 作者:{{ post.author.username }}</small></h2>
-            <p>{{ post.content[:120]|markdown }}<a href="{{ url_for('pages', post_id=post.id) }}">&gt;&gt;阅读全文</a></p>
+            <div class="page-header">
+                <h1>
+                    {% if post in posts[:3] %}
+                    <span class="label label-danger" style="font-size: 50%;vertical-align: middle;">New</span>
+                    {% endif %}
+                    <a href="{{ url_for('posts', post_id=post.id) }}">{{ post.title }}</a>
+                    <small>[作者:{{ post.author.username }}]</small>
+                </h1>
+            </div>
+            <div class="page-content">
+                <div>
+                    {{ post.content[:120]|markdown }}
+                </div>
+                <p style="text-align: right;">
+                    <a href="{{ url_for('posts', post_id=post.id) }}" class="btn btn-info">&gt;&gt;阅读全文</a>
+                </p>
+            </div>
         </div>
         {% endfor %}
-    </div>
+    </main>
+    {{ super() }}
 {% endblock %}
