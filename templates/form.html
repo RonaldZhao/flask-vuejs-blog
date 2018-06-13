@@ -30,7 +30,7 @@
         <p style="color: red;">{{ message }}</p>
         {% endfor %}
         {% endwith %}
-        {{ form.username(placeholder='用户名', autofocus='True') }}
+        {{ form.user_name(placeholder='用户名', autofocus='True') }}
         <i class="fa fa-user"></i>
         {{ form.password(placeholder='密码')}}
         <i class="fa fa-key"></i>
@@ -46,6 +46,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src='{{ url_for('static', filename='js/jquery.min.js') }}'></script>
+<script src='{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}'></script>
 {{ super() }}
 {% endblock %}
