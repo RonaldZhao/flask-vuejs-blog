@@ -12,12 +12,12 @@
                     <span class="label label-danger" style="font-size: 50%;vertical-align: middle;">New</span>
                     {% endif %}
                     <a href="{{ url_for('posts', post_id=post.id) }}">{{ post.title }}</a>
-                    <small>[作者:{{ post.author.username }}]</small>
+                    <small>[作者:{{ post.author.user_name }}]</small>
                 </h1>
             </div>
             <div class="page-content">
                 <div>
-                    {{ post.content[:120] }}
+                    {{ post.content|truncate(150) }}
                 </div>
                 <p style="text-align: right;">
                     <a href="{{ url_for('posts', post_id=post.id) }}" class="btn btn-info">&gt;&gt;阅读全文</a>
