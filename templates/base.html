@@ -24,7 +24,7 @@
                         <p class="navbar-text">
                             <span class="label label-primary">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                {{ current_user.username }}
+                                {{ current_user.user_name }}
                             </span>
                         </p>
                     </li>
@@ -53,7 +53,7 @@
 {% endblock %}
 
 {% block content %}
-<footer class="footer" style="line-height: 40px;">
+<footer class="footer navbar-fixed-bottom" style="line-height: 40px;">
     <div class="container">
         <span class="text-muted center-block" style="text-align: center;">&copy;RonaldZhao All Rights Reserved. 2018-Present</span>
     </div>
