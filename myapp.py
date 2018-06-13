@@ -48,7 +48,7 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(user_name=form.user_name.data).first()
         if user is None:
             flash('此用户不存在!')
         elif check_password_hash(user.password_hash, form.password.data):
@@ -75,7 +75,7 @@ def register():
         return redirect(url_for('index'))
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(user_name=form.user_name.data).first()
         if user is not None:
             flash('此用户已存在!')
             return render_template('form.html', form=form)
@@ -83,7 +83,7 @@ def register():
             flash('两次输入密码不一致!')
             return render_template('form.html', form=form)
         else:
-            user = User(form.username.data, form.password.data)
+            user = User(form.user_name.data, form.password.data)
             db.session.add(user)
             db.session.commit()
             flash('注册成功, 请登录!')
